@@ -1,0 +1,6 @@
+python:
+  build: .
+  stdin_open: true
+  tty: true
+  volumes:
+    - ./code:/code
