@@ -2,7 +2,7 @@
 
 main:   lui $9, 0x1001
         addi $12, $0, 64
-        addi $10, $0, 0xffff0000 # $10=0x000000ff
+     addi $10, $0, 0xffff0000 # $10=0x000000ff
         addi $13, $0, 32
 test0:  beq $13, $0, fim
 test:   beq $12, $0, sai
