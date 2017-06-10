@@ -1,4 +1,4 @@
-
+.globl scenario06:
                 addi $10, $0, 0x9bdbf0
                 sw $10, 268500992($0)
             

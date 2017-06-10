@@ -18,15 +18,18 @@ def rgb_to_hex(rgb_tuple):
     return "0x{0:02x}{1:02x}{2:02x}".format(*rgb_tuple)
 
 
-def convert_img_path_to_asm_path(img_path):
-    path, filename = split(img_path)
-    filename = splitext(filename)[0]
+def get_filename(path):
+    path, filename = split(path)
+    return splitext(filename)[0]
 
+
+def convert_img_path_to_asm_path(img_path):
+    filename = get_filename(img_path)
     newfilename = '{}.asm'.format(filename)
     return join(output_path, newfilename)
 
 
-def process_image(img, out_path):
+def process_image(img, out_path, title):
 
     def write_assembly(pixels):
 
@@ -38,6 +41,7 @@ def process_image(img, out_path):
 
         def write_file(strings):
             text_file = open(out_path, "w")
+            text_file.write('.globl {0}:'.format(title))
             for s in strings:
                 text_file.write(s)
             text_file.close()
@@ -58,7 +62,8 @@ imgs_paths = (join(imgs_path, f) for f in listdir(imgs_path)
               if isfile(join(imgs_path, f)))
 
 imgs = ((Image.open(path).resize(screen_dimensions).convert('RGB'),
-         convert_img_path_to_asm_path(path), )
+         convert_img_path_to_asm_path(path),
+         get_filename(path), )
         for path in imgs_paths)
 
 for img in imgs:
