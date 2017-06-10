@@ -1,0 +1,3 @@
+.globl ext
+ext:
+	nop
