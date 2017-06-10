@@ -1,7 +1,7 @@
 from PIL import Image
 
 screen_size = (512, 256, )
-pixel_size = 4
+pixel_size = 2
 
 screen_dimensions = (screen_size[0] // pixel_size,
                      screen_size[1] // pixel_size, )
