@@ -4,7 +4,7 @@ from os.path import isfile, join, abspath, realpath, split, splitext, dirname
 from PIL import Image
 
 screen_size = (512, 256, )
-pixel_size = 8
+pixel_size = 4
 
 screen_dimensions = (screen_size[0] // pixel_size,
                      screen_size[1] // pixel_size, )
