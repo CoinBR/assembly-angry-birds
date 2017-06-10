@@ -4,7 +4,7 @@ from os.path import isfile, join, abspath, realpath, split, splitext, dirname
 from PIL import Image
 
 screen_size = (512, 256, )
-pixel_size = 2
+pixel_size = 8
 
 screen_dimensions = (screen_size[0] // pixel_size,
                      screen_size[1] // pixel_size, )
@@ -47,9 +47,10 @@ def process_image(img, out_path, title):
 
         def write_file(strings):
             text_file = open(out_path, "w")
-            text_file.write('.globl {0}\n{0}:'.format(title))
+            text_file.write('.globl {0}\n{0}:'.format(title)) # header
             for s in strings:
                 text_file.write(s)
+            text_file.write('jr $ra') # bottom
             text_file.close()
 
         args = ((pixels[i], mem_start + i * 4) for i in range(len(pixels)))

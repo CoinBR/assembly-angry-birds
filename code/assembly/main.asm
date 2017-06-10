@@ -1,14 +1,48 @@
 .text 
 
+
+
 main:
-	j scenario00
-	j scenario01
-	j scenario02
-	j scenario03
-	j scenario04
-	j scenario05
-	j scenario06
-	j scenario07
-	j scenario08
-	j scenario09
-	j scenario10
+
+iloop:
+	jal scenario00
+	jal interval
+
+	jal scenario01
+	jal interval
+#
+#	jal scenario02
+#	jal interval
+#
+#	jal scenario03
+#	jal interval
+#
+#	jal scenario04
+#	jal interval
+#
+#	jal scenario05
+#	jal interval
+#
+#	jal scenario06
+#	jal interval
+#
+#	jal scenario07
+#	jal interval
+#
+#	jal scenario08
+#	jal interval
+#
+#	jal scenario09
+#	jal interval
+#
+#	jal scenario10
+#	jal interval
+#
+	j iloop 
+
+
+interval:
+	addi $v0, $0, 32 # Sleep Code
+	addi $a0, $0, 3000  # ms 
+	syscall
+	jr $ra
