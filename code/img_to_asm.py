@@ -4,7 +4,7 @@ from os.path import isfile, join, abspath, realpath, split, splitext, dirname
 from PIL import Image
 
 screen_size = (512, 256, )
-pixel_size = 16
+pixel_size = 2
 
 screen_dimensions = (screen_size[0] // pixel_size,
                      screen_size[1] // pixel_size, )
@@ -15,6 +15,8 @@ output_path = join(root_path, 'assembly/')
 
 
 def rgb_to_hex(rgb_tuple):
+    if rgb_tuple[3] == 0:
+        return None
     return "0x{0:02x}{1:02x}{2:02x}".format(*rgb_tuple)
 
 
@@ -34,6 +36,10 @@ def process_image(img, out_path, title):
     def write_assembly(pixels):
 
         def gen_draw_pixel_code(pixel_address_tuple):
+            if not pixel_address_tuple[0]:
+                # transparent pixel. Don't write asm code to it.
+                return ''
+
             return """
                 addi $10, $0, {}
                 sw $10, {}($0)
@@ -61,7 +67,7 @@ def process_image(img, out_path, title):
 imgs_paths = (join(imgs_path, f) for f in listdir(imgs_path)
               if isfile(join(imgs_path, f)))
 
-imgs = ((Image.open(path).resize(screen_dimensions).convert('RGB'),
+imgs = ((Image.open(path).resize(screen_dimensions).convert('RGBA'),
          convert_img_path_to_asm_path(path),
          get_filename(path), )
         for path in imgs_paths)
