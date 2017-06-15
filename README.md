@@ -34,19 +34,19 @@ The professor allowed us to write a high level application which reads a image a
 In these instructions we will be using Docker and Docker-Compile to make sure everything will work.
 Nonetheless, if are a intermediary+ Python programmer, making this simple script work without docker.
 
-* Install Docker (https://docs.docker.com/engine/installation/)
-* Install Docker-Composer (https://docs.docker.com/compose/install/)
+* [Install Docker](https://docs.docker.com/engine/installation/)
+* [Install Docker-Composer](https://docs.docker.com/compose/install/)
 * In the project root, run:
     sudo docker-compose run python python img_to_asm.py
 
 
-If you want delete the old game images:
-  * delete all files under /code/imgs/
-  * delete all files, BUT main.asm, under /code/assembly/
-    * the main.asm contains all the game logic, and you may want to keep it.
-  * put the new images you want to use in /code/imgs
-  * In the project root, run:
-    * sudo docker-compose run python python img_to_asm.py
+## How to Change the images for new ones :
+* delete all files under /code/imgs/
+* delete all files, BUT main.asm, under /code/assembly/
+ * the main.asm contains all the game logic, and you may want to keep it.
+* put the new images you want to use in /code/imgs
+* In the project root, run:
+ * sudo docker-compose run python python img_to_asm.py
 
 # How to Change the Game Logic
 All the game code is in the file /code/assembly/main.asm
