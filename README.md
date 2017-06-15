@@ -39,6 +39,7 @@ Nonetheless, if are a intermediary+ Python programmer, making this simple script
 * In the project root, run:
     sudo docker-compose run python python img_to_asm.py
 
+
 If you want delete the old game images:
   * delete all files under /code/imgs/
   * delete all files, BUT main.asm, under /code/assembly/
