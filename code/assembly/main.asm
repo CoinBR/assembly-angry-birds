@@ -7,6 +7,7 @@ main:
 
 	# Prepare to Shoot
 	lui  $11, 0xffff 		# Mem Address that detects if a key is pressed
+	lw   $10, 4($11)		# Reset Mem $11 (Key Press Checker) to 0
 	addi $8, $0, 100		# BASE time unit (in ms)	
 	addi $12, $0, 0			# interactions/power counter
 	addi $13, $0, 7			# Exact interations # required to hit a shot
@@ -15,15 +16,16 @@ try_and_shoot:
 	lw $10, 0($11)			# Copy Mem $11 (key press checker) to register $10
 	beq $10, $0, try_and_shoot 	# while no input is given, keep checking
 
+	lw $10, 4($11)			# Reset Mem $11 (Key Press Checker) to 0
 measure_power:
-	addi $12, $0, 1			# increment strength
 	jal interval
+	addi $12, $12, 1		# increment strength
 	lw $10, 0($11)			# Copy Mem $11 (key press checker) to register $10
-	bgtz $10, measure_power 	# player is yet pressing a key
+	beq $10, $0, measure_power 	# player hasn't yet pressed a key for a second time
+
 
 	# play animation according to shot power	
-	addi $8, $0, 900		# Time to display each animation frame
-	addi $14, $0, 0			# power_already_tested = false
+	addi $8, $0, 737		# Time to display each animation frame
 	jal do_measure_power
 
 	j main
@@ -82,7 +84,10 @@ weakshot:
 	jal charw11
 	jal interval
 
-	jr $ra 
+	jal loosemsg 
+	jal press_key_to_continue
+	j main
+
 
 hitshot:
 	jal scenario01
@@ -130,7 +135,9 @@ hitshot:
 	jal charm11
 	jal interval
 
-	jr $ra 
+	jal winmsg
+	jal press_key_to_continue
+	j main
 
 strongshot:
 	jal scenario01
@@ -173,16 +180,26 @@ strongshot:
 	jal chars10
 	jal interval
 
-
 	jal scenario11
 	jal chars11
 	jal interval
 
-	jr $ra 
+	jal loosemsg 
+	jal press_key_to_continue
+	j main
 
 
 interval:
 	addi $v0, $0, 32 # Sleep Code
 	add $a0, $0, $8  # ms 
 	syscall
+	jr $ra
+
+
+press_key_to_continue:
+	lw   $10, 4($11)		# Reset Mem $11 (Key Press Checker) to 0
+pktc_loop:
+	lw $10, 0($11)			# Copy Mem $11 (key press checker) to register $10
+	beq $10, $0, pktc_loop 		# player hasn't pressed a key yet
+	lw   $10, 4($11)		# Reset Mem $11 (Key Press Checker) to 0
 	jr $ra
