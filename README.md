@@ -10,14 +10,14 @@ Runs in MARS MIPS Simulator (http://courses.missouristate.edu/KenVollmar/mars/)
 * [Enable] Settings > Initialize Program Counter to global 'main' if defined
 * Tools > Keyboard and Display MMIO Simulator > Connect to MIPS
 * Tools > Bitmap Display > Connect to MIPS
-    Unit Width in Pixels:     4
-    Unit Height in Pixels:    4
-    Display Width in Pixels:  512
-    Display Height in Pixels: 256
-    Base address for display: 0x10010000 (static data)
-✝ File > Open > code/assembly/main.asm > Open
-✝ Run > Assemble (Takes a While)
-✝ Run > Go
+    * Unit Width in Pixels:     4
+    * Unit Height in Pixels:    4
+    * Display Width in Pixels:  512
+    * Display Height in Pixels: 256
+    * Base address for display: 0x10010000 (static data)
+* File > Open > code/assembly/main.asm > Open
+* Run > Assemble (Takes a While)
+* Run > Go
 
 # The Image to MIPS Assembly Code Generator 
 The professor allowed us to write a high level application which reads a image and generate the assembly code to print it to the screen.
