@@ -1,12 +1,66 @@
 .text 
-
-
-
 main:
+	lui  $11, 0xffff 		# Mem Address that detects if a key is pressed
+	addi $15, $0, 0			# Credits not yet displayed (Must display only once)
+
+	jal intro_bg_top		# Dynamic part, will be reprinted after each message
+	jal intro_bg_bot		# Static part, will stay until the last msg
+	
+
+	jal story00
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story01
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story02
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story03
+	jal press_key_to_continue
+
+
+	jal intro_bg_top
+	jal story04
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story05
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story06
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal story07
+	jal press_key_to_continue
+
+
+	jal intro_bg_top
+	jal instructions00
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal instructions01
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal instructions02
+	jal press_key_to_continue
+
+	jal intro_bg_top
+	jal instructions03
+	jal press_key_to_continue
+
+
+game_start:
 	jal scenario00 			# Display first frame
 
 	# Prepare to Shoot
-	lui  $11, 0xffff 		# Mem Address that detects if a key is pressed
 	lw   $10, 4($11)		# Reset Mem $11 (Key Press Checker) to 0
 	addi $8, $0, 100		# BASE time unit (in ms)	
 	addi $12, $0, 0			# interactions/power counter
@@ -28,7 +82,7 @@ measure_power:
 	addi $8, $0, 737		# Time to display each animation frame
 	jal do_measure_power
 
-	j main
+	j game_start
 	
 
 do_measure_power:
@@ -86,7 +140,7 @@ weakshot:
 
 	jal loosemsg 
 	jal press_key_to_continue
-	j main
+	j game_start
 
 
 hitshot:
@@ -137,7 +191,10 @@ hitshot:
 
 	jal winmsg
 	jal press_key_to_continue
-	j main
+
+	# Makes sure credits are displayed only once
+	beq $15, $0, credits
+	j game_start
 
 strongshot:
 	jal scenario01
@@ -186,7 +243,47 @@ strongshot:
 
 	jal loosemsg 
 	jal press_key_to_continue
-	j main
+	j game_start
+
+
+credits:
+	addi $15, $0, 1			# Credits already displayed (Must display only once)
+
+	jal credits_bg_top		# Dynamic part, will be reprinted after each message
+	jal credits_bg_bot		# Static part, will stay until the last msg
+
+	jal credits00 
+	jal press_key_to_continue
+
+	jal credits_bg_top
+	jal credits01 
+	jal press_key_to_continue
+
+	jal credits_bg_top
+	jal credits02 
+	jal press_key_to_continue
+
+
+	jal credits_bg_top
+	jal credits03 
+	jal press_key_to_continue
+
+
+	jal credits_bg_top
+	jal credits04 
+	jal press_key_to_continue
+
+
+	jal credits_bg_top
+	jal credits05 
+	jal press_key_to_continue
+
+
+	jal credits_bg_top
+	jal credits06 
+	jal press_key_to_continue
+
+	j game_start
 
 
 interval:
