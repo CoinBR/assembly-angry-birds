@@ -3,13 +3,13 @@ Angry Birds like game, made is MIPS Assembly Code. (School Project)
 Runs in MARS MIPS Simulator (http://courses.missouristate.edu/KenVollmar/mars/)
 
 # How to Compile and Run
-✝ Download Java (https://www.java.com/en/download/) 
-✝ clone this repository and go to its root dir
-✝ java -jar Mars4_5.jar
-✝ [Enable] Settings > Assemble All Files in Directory
-✝ [Enable] Settings > Initialize Program Counter to global 'main' if defined
-✝ Tools > Keyboard and Display MMIO Simulator > Connect to MIPS
-✝ Tools > Bitmap Display > Connect to MIPS
+> Download Java (https://www.java.com/en/download/) 
+> clone this repository and go to its root dir
+> java -jar Mars4_5.jar
+> [Enable] Settings > Assemble All Files in Directory
+> [Enable] Settings > Initialize Program Counter to global 'main' if defined
+> Tools > Keyboard and Display MMIO Simulator > Connect to MIPS
+> Tools > Bitmap Display > Connect to MIPS
     Unit Width in Pixels:     4
     Unit Height in Pixels:    4
     Display Width in Pixels:  512
