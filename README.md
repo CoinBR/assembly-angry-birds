@@ -4,6 +4,7 @@ Runs in MARS MIPS Simulator (http://courses.missouristate.edu/KenVollmar/mars/)
 
 [Slides about the development process (Prof asked)](https://drive.google.com/open?id=195wEksp_nAkrR0fNE8y3qUSPdFWbs7IEfEEVJVl_0cU)
 
+### Gameplay Video
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=-dT7sHjod_w" target="_blank"><img src="http://img.youtube.com/vi/-dT7sHjod_w/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
